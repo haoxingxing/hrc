@@ -22,7 +22,7 @@ public:
 		httphelper::logger::logstr("Load Module " + name );
 
 	};
-
+	virtual ~pmodule(){};
 	virtual inline nlohmann::json call(const std::string& key,const nlohmann::json& data)
 	{
 		if (funcs.find(key) == funcs.end())

@@ -10,6 +10,10 @@ private:
 	std::map<std::string, pmodule*> mods;
 public:
 	v1_handler(httplib::Server& srv);
+	~v1_handler() {
+
+
+	};
 	void handleRequest(const httplib::Request& req, httplib::Response& res);
 };
 
