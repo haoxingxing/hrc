@@ -13,7 +13,7 @@ protected:
 	void insert(const std::string& path, hfunc f)
 	{
 		httphelper::logger::logstr("Add " + path + "@" + name);
-		funcs.insert_or_assign(path, f);
+		funcs[path] = f;
 	}
 public:
 	inline pmodule(const std::string &name, httplib::Server& srv)
