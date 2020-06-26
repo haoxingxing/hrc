@@ -4,9 +4,9 @@
 class db
 {
 public:
-	virtual ~db();
-	virtual nlohmann::json get(std::string key);
-	virtual void commit(std::string key,nlohmann::json);
+	virtual ~db(){};
+	virtual nlohmann::json get(std::string key){return nlohmann::json();};
+	virtual void commit(std::string key,nlohmann::json){};
 	
 };
 #endif // DB_H
