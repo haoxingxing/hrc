@@ -28,19 +28,15 @@
 class auth : public pmodule
 {
 private:
-	nlohmann::json users;
 	std::map<std::string, std::string> usid;
-	nlohmann::json machines;
-
 		
 public:
-	auth(httplib::Server& srv);
-	void save();
+	auth(httplib::Server& srv, db* database);
 	std::pair<bool, std::string> login(std::string usr,std::string pwd);
 	std::pair<bool, std::string> reg(std::string usr, std::string pwd);
 	std::pair<bool, std::string> GetMachineKey(std::string ssid);
 	bool DelMachineKey(std::string usr, std::string pwd);
-	bool VerifyMachineKey( std::string pwd);
+	bool VerifyMachineKey( std::string pwd) const;
 	bool VerifyUsrKey(std::string pwd);
 	
 

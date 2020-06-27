@@ -3,6 +3,8 @@
 #include "v1_handler.h"
 #include <helper.h>
 #include <nlohmann/json.hpp>
+#include "database/filedb.h"
+
 using namespace std;
 using namespace httplib;
 #define DEFAULT_ADDRESS "0.0.0.0"
@@ -11,7 +13,7 @@ int main(void)
 {
     Server svr;
     svr.set_logger(&httphelper::logger::log_handler);
+    filedb::Init();
     v1_handler h(svr);
-	
     svr.listen(DEFAULT_ADDRESS, DEFAULT_PORT);
 }

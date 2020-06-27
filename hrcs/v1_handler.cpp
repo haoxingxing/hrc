@@ -1,11 +1,11 @@
 #include "v1_handler.h"
-
 #include "auth/auth.h"
+#include "database/filedb.h"
 
 
 v1_handler::v1_handler(httplib::Server& srv) : srv(srv)
 {
-	mods["auth"] = new auth(srv);
+	mods["auth"] = new auth(srv,new filedb("auth"));
 	srv.Post("/v1/.*", [&](const httplib::Request& req, httplib::Response& res)
 	{
 		this->handleRequest(req, res);
@@ -19,7 +19,7 @@ void v1_handler::handleRequest(const httplib::Request& req, httplib::Response& r
 	auto x = nlohmann::json::parse(req.body);
 	std::vector<std::string> levels;
 	std::string s = req.path;
-	size_t pos = 0;
+	size_t pos;
 	std::string classname;
 	if ((pos = s.find("/v1/")) != std::string::npos)
 	{
